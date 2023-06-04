@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="com.poc.sample.gui.login.LoginField" />
+        <import type="android.view.View" />
+        <variable
+            name="viewModel"
+            type="com.poc.sample.gui.login.LoginViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/colorPrimary"
+        android:focusableInTouchMode="true"
+        android:fitsSystemWindows="true"
+        android:isScrollContainer="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="@color/colorPrimary"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_margin="15dp"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:background="@color/colorPrimary"
+                android:text="@string/login"
+                android:textColor="@color/text_color_light"
+                android:textSize="32sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtLogin"
+                android:layout_marginTop="30dp"
+                app:hintTextColor="@color/white"
+                android:hint="@string/username_"
+                app:errorTextAppearance="@style/error_appearance">
+
+                <EditText
+                    android:id="@+id/etEmail"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/text_regular"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    android:paddingVertical="14dp"
+                    android:drawablePadding="12dp"
+                    android:drawableStart="@drawable/ic_person"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:maxLength="32"
+                    android:onFocusChange="@{ (view, hasFocus) -> viewModel.onFocusChanged(LoginField.USER_NAME, hasFocus)}"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.afterTextChange(LoginField.USER_NAME,text.toString())}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tiPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tiUserName"
+                android:layout_marginTop="10dp"
+                app:hintTextColor="@color/white"
+                android:hint="@string/password"
+                app:errorTextAppearance="@style/error_appearance"
+                app:passwordToggleEnabled="true">
+
+                <EditText
+                    android:id="@+id/etPassword"
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:textSize="@dimen/text_regular"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/white"
+                    android:paddingVertical="14dp"
+                    android:drawablePadding="12dp"
+                    android:drawableStart="@drawable/ic_password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:longClickable="false"
+                    android:maxLength="15"
+                    android:onFocusChange="@{ (view, hasFocus) -> viewModel.onFocusChanged(LoginField.PASSWORD, hasFocus)}"
+                    android:onTextChanged="@{(text, start, before, count) -> viewModel.afterTextChange(LoginField.PASSWORD,text.toString())}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tiPassword"
+                android:layout_alignParentEnd="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:background="@color/colorPrimary"
+                android:onClick="@{()->viewModel.onForgotPasswordClick()}"
+                android:paddingVertical="10dp"
+                android:text="@string/forgot_password"
+                android:textColor="@color/text_color_light"
+                android:textSize="@dimen/text_regular" />
+
+            <FrameLayout
+                android:id="@+id/rlLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvForgotPassword"
+                android:layout_marginTop="20dp"
+                android:animateLayoutChanges="true">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="46dp"
+                    android:textSize="@dimen/text_regular"
+                    android:background="@drawable/ripple_effect"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:enabled="@{viewModel.btnLoginEnable}"
+                    android:onClick="@{()->viewModel.onLoginClick()}"
+                    android:text="@string/login"
+                    app:visibleIf="@{!viewModel.loadedVisibility}"
+                    />
+
+                <ProgressBar
+                    android:id="@+id/loader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="46dp"
+                    android:layout_gravity="center_horizontal"
+                    app:visibleIf="@{viewModel.loadedVisibility}"
+                    tools:visibility="visible" />
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rlLogin"
+                android:layout_marginTop="15dp"
+                android:gravity="center"
+                android:background="@color/colorPrimary"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:gravity="center"
+                    android:paddingVertical="10dp"
+                    android:text="@string/don_t_have_account"
+                    android:textColor="@color/text_color_light" />
+
+                <TextView
+                    android:id="@+id/txtSignup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:autoLink="all"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:gravity="center"
+                    android:linksClickable="false"
+                    android:onClick="@{()->viewModel.onSignUpClick()}"
+                    android:paddingVertical="10dp"
+                    android:selectAllOnFocus="false"
+                    android:text="@string/sign_up"
+                    android:textColor="@color/text_color_light" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

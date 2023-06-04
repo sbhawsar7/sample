@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+    <item
+        android:id="@+id/actionSermon"
+        android:icon="@drawable/ic_classes"
+        android:title="@string/sermon" />
+    <item
+        android:id="@+id/actionClass"
+        android:icon="@drawable/ic_classes"
+        android:title="@string/classes" />
+    <item
+        android:id="@+id/actionGospel"
+        android:icon="@drawable/ic_classes"
+        android:title="@string/gospel" />
+    <item
+        android:id="@+id/actionArchive"
+        android:icon="@drawable/ic_archive_menu"
+        android:title="@string/archives" />
+    <item
+        android:id="@+id/actionFavorite"
+        android:icon="@drawable/ic_dashboard_favorites"
+        android:title="@string/favorites" />
+
+    <item
+        android:id="@+id/actionPrayer"
+        android:visible="false"
+        android:icon="@drawable/ic_cousnelling_menu"
+        android:title="@string/prayers" />
+    <item
+        android:id="@+id/actionCounselling"
+        android:icon="@drawable/ic_cousnelling_menu"
+        android:title="@string/counseling"
+        android:visible="false" />
+
+    <item
+        android:id="@+id/actionDonation"
+        android:icon="@drawable/ic_settings"
+        android:visible="false"
+        android:title="@string/donation" />
+    <item
+        android:id="@+id/actionSettings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/settings" />
+
+    <item
+        android:id="@+id/actionLogout"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/logout" />
+</menu>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".gui.main.classes.ClassesFragment">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.poc.sample.gui.main.classes.ClassesViewModel" />
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="I am classes"
+            android:textSize="41sp"
+            android:gravity="center"/>
+
+    </FrameLayout>
+</layout>

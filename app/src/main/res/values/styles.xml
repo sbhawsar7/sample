@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="error_appearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/error_color</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+</resources>
